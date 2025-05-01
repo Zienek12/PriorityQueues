@@ -30,5 +30,76 @@ private:
 		heap.get(index1) = heap.get(index2);
 		heap.get(index2) = temp;
 	}
+	void heapifyUp(int index) {
+		while (index > 0 && heap.get(index).priority > heap.get(parent(index)).priority) {
+			swap(index, parent(index));
+			index = parent(index);
+		}
+	}
+	void heapifyDown(int index)
+	{
+		int size = heap.getSize();
+		int largest = index;
+		int left = leftChild(index);
+		int right = rightChild(index);
+		if (left < size && heap.get(left).priority > heap.get(largest).priority) {
+			largest = left;
+		}
+		if (right < size && heap.get(right).priority > heap.get(largest).priority) {
+			largest = right;
+		}
+		if (largest != index) {
+			swap(index, largest);
+			heapifyDown(largest);
+		}
+	}
+public:
+	void add(int value, int priority) {
+		Element newElement = { value, priority };
+		heap.addBack(newElement);
+		heapifyUp(heap.getSize() - 1);
+	}
+	void print() {
+		for (int i = 0; i < heap.getSize(); i++) {
+			std::cout << heap.get(i) << std::endl;
+		}
+	}
+
+	void remove() {
+		if (heap.getSize() == 0) {
+			throw std::out_of_range("Heap is empty");
+		}
+		heap.get(0) = heap.get(heap.getSize() - 1);
+		heap.removeBack();
+		heapifyDown(0);
+	}
 	
+	void set(int index, int newPriority)
+	{
+		if (index < 0 || index >= heap.getSize()) {
+			throw std::out_of_range("Index out of range");
+		}
+		int oldPriority = heap.get(index).priority;
+		heap.get(index).priority = newPriority;
+		if (newPriority > oldPriority) {
+			heapifyUp(index);
+		}
+		else {
+			heapifyDown(index);
+		}
+
+
+
+	}
+
+	Element peek() {
+		if (heap.getSize() == 0) {
+			throw std::out_of_range("Heap is empty");
+		}
+		return heap.get(0);
+	}
+
+	int getSizePQ() {
+		return heap.getSize();
+	}
 };
