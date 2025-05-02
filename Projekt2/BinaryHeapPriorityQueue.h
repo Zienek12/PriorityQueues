@@ -54,7 +54,7 @@ private:
 		}
 	}
 public:
-	void add(int value, int priority) {
+	void enqueue(int value, int priority) {
 		Element newElement = { value, priority };
 		heap.addBack(newElement);
 		heapifyUp(heap.getSize() - 1);
@@ -65,13 +65,16 @@ public:
 		}
 	}
 
-	void remove() {
+	
+	Element	dequeue() {
 		if (heap.getSize() == 0) {
 			throw std::out_of_range("Heap is empty");
 		}
+		Element root = heap.get(0);
 		heap.get(0) = heap.get(heap.getSize() - 1);
 		heap.removeBack();
 		heapifyDown(0);
+		return root;
 	}
 	
 	void set(int index, int newPriority)
