@@ -78,7 +78,7 @@ public:
     }
 
     T dequeue() {
-        if (!head) {
+        if (isEmpty()) {
             throw std::out_of_range("Queue is empty");
         }
 
@@ -113,7 +113,7 @@ public:
     }
 
     void print() const {
-        if (!head) {
+        if (isEmpty()) {
             throw std::out_of_range("Queue is empty");
         }
 
