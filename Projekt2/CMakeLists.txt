@@ -3,7 +3,7 @@
 #
 
 # Dodaj źródło do pliku wykonywalnego tego projektu.
-add_executable (Projekt2 "main.cpp" "BinaryHeapPriorityQueue.h" "DynamicArray.h")
+add_executable (Projekt2 "main.cpp" "BinaryHeapPriorityQueue.h" "DynamicArray.h" "HeapInterface.h" "LinkedListInterface.h" "ComplexityTests.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Projekt2 PROPERTY CXX_STANDARD 20)
