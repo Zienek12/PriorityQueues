@@ -19,13 +19,13 @@ int generateRandomNumber() {
 
 void runComplexityTests() {
     std::string start = "C:/Users/andos/source/repos/Zienek12/PriorityQueues/Projekt2/Measurments/";
-    size_t sizes[] = { 1000, 2000, 5000, 10000, 20000, 50000, 100000 };
+    size_t sizes[] = { 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000};
     std::vector<std::string> dataStructures = { "LinkedList", "BinaryHeap" };
     std::vector<std::string> operations = { "Enqueue", "Dequeue", "Peek", "ChangePriority", "GetSize" };
     std::string txt = ".txt";
 
     for (int i = 0; i < dataStructures.size(); i++) {
-        for (int j = 0; j < operations.size(); j++) {
+        for (int j = 0; j < dataStructures.size(); j++) {
             std::string fileName = start + dataStructures[i] + operations[j] + txt;
             std::ofstream file(fileName);
 
